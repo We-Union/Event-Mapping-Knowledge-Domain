@@ -1,7 +1,6 @@
 from py2neo import Graph, Node, Relationship
 from tqdm import tqdm
 
-
 class EventGraph:
     def __init__(self, neo4j_graph: Graph) -> None:
         self.graph = neo4j_graph
