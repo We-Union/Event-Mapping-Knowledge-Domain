@@ -8,7 +8,14 @@
 
 ## 事件知识图谱
 
+## schema
+
+如下图所示：
+![](./data/schema.png)
+
 ## 数据集
+
+wikipedia
 
 ## 挂载地点
 
