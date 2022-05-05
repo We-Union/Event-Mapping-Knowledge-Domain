@@ -1,5 +1,6 @@
 from py2neo import Graph, Node, Relationship
 from tqdm import tqdm
+import json
 
 class EventGraph:
     def __init__(self, neo4j_graph: Graph) -> None:
@@ -31,18 +32,43 @@ class EventGraph:
         },
         """
         try:
-            event_node = Node(item_dict["title"], desc=item_dict["content"])
-            joiner = Node(item_dict["joiner"])
+            self.graph.merge(
+                Node("EVENT", title=item_dict["title"], desc=item_dict["desc"]),
+                "Event", "title"
+            )
+
+            for time in item_dict["time"]:
+                self.graph.merge(
+                    Node("TIME", time=time),
+                    "TIME", "time"
+                )
+            for place in item_dict["place"]:
+                self.graph.merge(
+                    Node("PLACE", place=place),
+                    "PLACE", "place" 
+                )
+            for joiner in item_dict["joiner"]:
+                # self.graph.merge(
+                #     Node("JOINER", joiner=joiner),
+                #     "JOINER", "joiner"
+                # )
+                j_type = joiner["type"]
+                j_name = joiner["content"]
+                if j_type == "GPE":
+                    ...
             
-            if "time" in item_dict and len(item_dict["time"] > 0):
-                time_node = Node(item_dict["time"])
-            
-            if "place" in item_dict and len(item_dict["place"] > 0):
-                place_node = Node(item_dict["place"])
+
+
             
 
         except:
             print("one error at title {}".format(item_dict.get("title", "Unknown")))
+    
+    def check_item(self, item_dict, key):
+        return bool(key in item_dict and len(item_dict[key]) > 0)
 
-    def push(self):
-        self.graph.merge()
+    def load_data(self, file):
+        for line in open(file, "r", encoding="utf-8"):
+            line = json.loads(line)
+            print(line)
+            break
