@@ -129,6 +129,5 @@ dmypy.json
 .pyre/
 
 # config
-config/
 lib/
-data
+*.json
