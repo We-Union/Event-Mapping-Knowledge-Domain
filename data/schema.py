@@ -35,22 +35,22 @@ class EventGraph:
 
             for time in item_dict["time"]:
                 time_node = Node("TIME", name=time.strip())
-                self.ctx.merge(self.HAPPEN_IN(event_node, time_node), "EVENT", "name")
+                self.graph.merge(self.HAPPEN_IN(event_node, time_node), "EVENT", "name")
 
             for place in item_dict["place"]:
                 place_node = Node("PLACE", name=place.strip())
-                self.ctx.merge(self.LOCATE_AT(event_node, place_node), "EVENT", "name")
+                self.graph.merge(self.LOCATE_AT(event_node, place_node), "EVENT", "name")
                 
             for joiner in item_dict["joiner"]:
                 j_type = joiner["type"].strip()
                 j_name = joiner["content"].strip()
                 joiner_node = Node(self.notation2name[j_type], name=j_name)    
-                self.ctx.merge(self.JOIN(joiner_node, event_node), self.notation2name[j_type], "name")
+                self.graph.merge(self.JOIN(joiner_node, event_node), self.notation2name[j_type], "name")
                 
 
             for link in item_dict["link"]:
                 link_event_node = Node("EVENT", name=link.strip())
-                self.ctx.merge(
+                self.graph.merge(
                     self.LINK(event_node, link_event_node) | self.LINK(link_event_node, event_node),
                     "EVENT", "name"
                 )
@@ -64,7 +64,5 @@ class EventGraph:
 
     def load_data(self, file):
         all_data = [json.loads(line.strip()) for line in open(file, "r", encoding="utf-8")]
-        self.ctx = self.graph.begin()
         for i in tqdm(range(len(all_data))):
             self.add_one_item(all_data[i])
-        self.graph.commit(self.ctx)
