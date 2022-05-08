@@ -3,20 +3,19 @@ from tqdm import tqdm
 import json
 
 class EventGraph:
+    notation2name = {
+        "GPE" : "COUNTRY",
+        "NORP" : "GROUP",
+        "PERSON" : "PERSON"
+    }
+    # predefined relationship
+    JOIN = Relationship.type("JOIN")
+    HAPPEN_IN = Relationship.type("HAPPEN_IN")
+    LOCATE_AT = Relationship.type("LOCATE_AT")
+    LINK = Relationship.type("LINK")
+
     def __init__(self, neo4j_graph: Graph) -> None:
         self.graph = neo4j_graph
-        # nodes define
-        self.event = []
-        self.time = []
-        self.place = []
-        self.joiner = []
-        
-        # relationship
-        self.belongsTo = []
-        self.cause = []
-        self.join = []
-        self.happenIn = []
-        self.locateAt = []
 
     def upload_data(self):
         ...
@@ -32,43 +31,40 @@ class EventGraph:
         },
         """
         try:
-            self.graph.merge(
-                Node("EVENT", title=item_dict["title"], desc=item_dict["desc"]),
-                "Event", "title"
-            )
+            event_node = Node("EVENT", name=item_dict["title"].strip(), desc=item_dict["desc"].strip())
 
             for time in item_dict["time"]:
-                self.graph.merge(
-                    Node("TIME", time=time),
-                    "TIME", "time"
-                )
+                time_node = Node("TIME", name=time.strip())
+                self.ctx.merge(self.HAPPEN_IN(event_node, time_node), "EVENT", "name")
+
             for place in item_dict["place"]:
-                self.graph.merge(
-                    Node("PLACE", place=place),
-                    "PLACE", "place" 
-                )
+                place_node = Node("PLACE", name=place.strip())
+                self.ctx.merge(self.LOCATE_AT(event_node, place_node), "EVENT", "name")
+                
             for joiner in item_dict["joiner"]:
-                # self.graph.merge(
-                #     Node("JOINER", joiner=joiner),
-                #     "JOINER", "joiner"
-                # )
-                j_type = joiner["type"]
-                j_name = joiner["content"]
-                if j_type == "GPE":
-                    ...
-            
+                j_type = joiner["type"].strip()
+                j_name = joiner["content"].strip()
+                joiner_node = Node(self.notation2name[j_type], name=j_name)    
+                self.ctx.merge(self.JOIN(joiner_node, event_node), self.notation2name[j_type], "name")
+                
 
-
-            
-
-        except:
+            for link in item_dict["link"]:
+                link_event_node = Node("EVENT", name=link.strip())
+                self.ctx.merge(
+                    self.LINK(event_node, link_event_node) | self.LINK(link_event_node, event_node),
+                    "EVENT", "name"
+                )
+        
+        except Exception as e:
+            print("[ERROR] ", e)
             print("one error at title {}".format(item_dict.get("title", "Unknown")))
     
     def check_item(self, item_dict, key):
         return bool(key in item_dict and len(item_dict[key]) > 0)
 
     def load_data(self, file):
-        for line in open(file, "r", encoding="utf-8"):
-            line = json.loads(line)
-            print(line)
-            break
+        all_data = [json.loads(line.strip()) for line in open(file, "r", encoding="utf-8")]
+        self.ctx = self.graph.begin()
+        for i in tqdm(range(len(all_data))):
+            self.add_one_item(all_data[i])
+        self.graph.commit(self.ctx)

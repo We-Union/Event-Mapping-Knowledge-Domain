@@ -1,25 +1,18 @@
-import json 
+from py2neo import Graph, Node, Relationship
+import json
+from data.schema import EventGraph
 
-demo = {}
+LOG_CONFIG_FILE = "./config/k.json"
 
-def handle_branklet(line: str):
-    desc_i = line.index("\"desc\": ")
-    time_i = line.index("\"time\": ")
-    print(line[desc_i + 8])
-    print(line[time_i - 5])
+with open(LOG_CONFIG_FILE, "r", encoding="utf-8") as fp:
+    c = json.load(fp)
 
-    desc_string = line[desc_i + 8: time_i - 2]
-    print(desc_string)
+g = Graph(**c)
 
-for line in open("data/results.clear.json", "r", encoding="utf-8"):
-    try:
-        line = json.loads(line)
-    except:
-        print(line)
-        handle_branklet(line)
-        exit(-1)
-    joiners = line["joiner"]
-    for j in joiners:
-        demo[j["type"]] = j["content"]
+transaction = g.begin()
 
-print(demo)
+a = Node("Person", name="Alice", age=33, desc="XXXXXXXXXXXXXXXXXXXXXXX")
+c = Node("Good", name="House", price=300)
+BUY = Relationship.type("BUY")
+transaction.merge(BUY(a, c), "Person", "name")
+g.commit(transaction)

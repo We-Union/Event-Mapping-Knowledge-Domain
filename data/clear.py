@@ -1,13 +1,36 @@
-# import en_core_web_sm
-# nlp = en_core_web_sm.load()
-# doc = nlp(u"The Winter Olympic Games (French: Jeux olympiques d'hiver)[note 1] is a major international multi-sport event held once every four years for sports practiced on snow and ice. The first Winter Olympic Games, the 1924 Winter Olympics, were held in Chamonix, France. The modern Olympic Games were inspired by the ancient Olympic Games, which were held in Olympia, Greece, from the 8th century BC to the 4th century AD. Baron Pierre de Coubertin founded the International Olympic Committee (IOC) in 1894, leading to the first modern Summer Olympic Games in Athens, Greece in 1896. The IOC is the governing body of the Olympic Movement, with the Olympic Charter defining its structure and authority.")
-# for token in doc:
-#     print(token.text, token.pos_)
-text1 = "The Winter Olympic Games (French: Jeux olympiques d'hiver)[note 1] is a major international multi-sport event held once every four years for sports practiced on snow and ice. The first Winter Olympic Games, the 1924 Winter Olympics, were held in Chamonix, France. The modern Olympic Games were inspired by the ancient Olympic Games, which were held in Olympia, Greece, from the 8th century BC to the 4th century AD. Baron Pierre de Coubertin founded the International Olympic Committee (IOC) in 1894, leading to the first modern Summer Olympic Games in Athens, Greece in 1896. The IOC is the governing body of the Olympic Movement, with the Olympic Charter defining its structure and authority."
-from pprint import pprint
+# -*- encoding=utf-8 -*-
+# purpose: clear " in the original relation
 
-from stanfordcorenlp import StanfordCoreNLP
+def remove_abnormal(text):
+    result = ""
+    enter = False
+    for i, c in enumerate(text):
+        if enter:
+            if c != '"':
+                result += c
+            else:
+                if text[i + 1] in ["}"] or text[i + 1: i + 3] in ["],", "]}"] or text[i + 1: i + 4] in [', "', ': "', ': [']:
+                    result += c
+                    enter = False
+        else:
+            result += c
+            if i > 2:
+                pre_str = text[i - 2: i + 1]
+                if pre_str in [': "', ', "']:
+                    enter = True
+        
+    return result
 
-model = StanfordCoreNLP("./lib/stanford-corenlp-4.4.0")
-res = model.ner(text1)
-pprint(res)
+# text = """{"title": "1957 Ice Hockey World Championships", "url": "https://en.wikipedia.org/wiki/1957_Ice_Hockey_World_Championships", "desc": "The 1957 Ice Hockey World Championships were held between 24 February and 5 March 1957 at the Palace of Sports of the Central Lenin Stadium in Moscow, USSR.", "time": ["24 February–5 March"], "place": [], "joiner": [{"type": "GPE", "content": "USSR"}, {"type": "NORP", "content": "Swedish"}, {"type": "GPE", "content": "Sweden"}, {"type": "GPE", "content": "Japan"}, {"type": "NORP", "content": "European"}, {"type": "NORP", "content": "Soviets"}, {"type": "GPE", "content": "Czechoslovakia"}, {"type": "GPE", "content": "the Soviet Union"}, {"type": "PERSON", "content": "Sven "Tumba"}, {"type": "PERSON", "content": "Johansson"}]}"""
+# text = remove_abnormal(text)
+# print(text)
+# json.loads(text)
+
+wfp = open("data/results.json", "w", encoding="utf-8")
+for line in open("data/_results.clear.json", "r", encoding="utf-8"):
+    line = remove_abnormal(line.strip())
+    wfp.write(line)
+    wfp.write("\n")
+wfp.close()
+
+
