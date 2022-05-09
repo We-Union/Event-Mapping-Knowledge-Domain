@@ -1,3 +1,6 @@
+# -*- encoding: utf-8 -*-
+# purpose: load data to neo4j server
+
 from py2neo import Graph, Node, Relationship
 import json
 from data.schema import EventGraph

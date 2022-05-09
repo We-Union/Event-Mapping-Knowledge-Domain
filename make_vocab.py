@@ -1,3 +1,7 @@
+# -*- encoding: utf-8 -*-
+# purpose: make vocab to view.json
+# please run the script in the neo4j server
+
 from py2neo import Graph, Node, Relationship, NodeMatcher, RelationshipMatcher
 import json
 

@@ -1,4 +1,4 @@
-# -*- encoding=utf-8 -*-
+# -*- encoding: utf-8 -*-
 # purpose: clear " in the original relation
 
 def remove_abnormal(text):
@@ -21,13 +21,8 @@ def remove_abnormal(text):
         
     return result
 
-# text = """{"title": "1957 Ice Hockey World Championships", "url": "https://en.wikipedia.org/wiki/1957_Ice_Hockey_World_Championships", "desc": "The 1957 Ice Hockey World Championships were held between 24 February and 5 March 1957 at the Palace of Sports of the Central Lenin Stadium in Moscow, USSR.", "time": ["24 February–5 March"], "place": [], "joiner": [{"type": "GPE", "content": "USSR"}, {"type": "NORP", "content": "Swedish"}, {"type": "GPE", "content": "Sweden"}, {"type": "GPE", "content": "Japan"}, {"type": "NORP", "content": "European"}, {"type": "NORP", "content": "Soviets"}, {"type": "GPE", "content": "Czechoslovakia"}, {"type": "GPE", "content": "the Soviet Union"}, {"type": "PERSON", "content": "Sven "Tumba"}, {"type": "PERSON", "content": "Johansson"}]}"""
-# text = remove_abnormal(text)
-# print(text)
-# json.loads(text)
-
-wfp = open("data/results.json", "w", encoding="utf-8")
-for line in open("data/_results.clear.json", "r", encoding="utf-8"):
+wfp = open("data/data_step1.json", "w", encoding="utf-8")
+for line in open("data/data.json", "r", encoding="utf-8"):
     line = remove_abnormal(line.strip())
     wfp.write(line)
     wfp.write("\n")
