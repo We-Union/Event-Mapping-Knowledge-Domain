@@ -45,7 +45,7 @@ data下的数据文件中`data.json`是NER完后的数据
 2. 运行`make_data.ipynb`得到 `data/data_step1.json` 和 `data/data_step2.json`
 3. 运行`load_neo4j.py`将本地数据上传到neo4j服务器
 4. 运行`make_vocab.py`从`neo4j`图数据库中抽取所有存在的节点和关系，并保存为`data/view.json`
-
+5. 运行`make_map.ipynb`将数据总视图映射为节点和关系的 `name` 到 `index` 的双向映射，保存得到`map.full.json`
 
 ---
 

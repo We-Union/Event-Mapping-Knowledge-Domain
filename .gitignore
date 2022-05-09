@@ -132,3 +132,4 @@ dmypy.json
 lib/
 config
 model
+map.full.json
