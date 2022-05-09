@@ -39,6 +39,14 @@ data下的数据文件中`data.json`是NER完后的数据
 
 `clear.ipynb`是处理数据流程的笔记。
 
+运行顺序:
+
+1. 通过仓库中的爬虫和standford NER模型得到`data/data.json`
+2. 运行`make_data.ipynb`得到 `data/data_step1.json` 和 `data/data_step2.json`
+3. 运行`load_neo4j.py`将本地数据上传到neo4j服务器
+4. 运行`make_vocab.py`从`neo4j`图数据库中抽取所有存在的节点和关系，并保存为`data/view.json`
+
+
 ---
 
 ## 类型

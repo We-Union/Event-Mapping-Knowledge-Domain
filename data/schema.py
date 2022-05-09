@@ -1,3 +1,6 @@
+# -*- encoding: utf-8 -*-
+# purpose: define the major model to store the data to neo4j server
+
 from py2neo import Graph, Node, Relationship
 from tqdm import tqdm
 import json
