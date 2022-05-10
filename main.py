@@ -9,10 +9,13 @@ with open(LOG_CONFIG_FILE, "r", encoding="utf-8") as fp:
 
 g = Graph(**c)
 
-transaction = g.begin()
+res = g.run('MATCH (n:EVENT{name:"2022 Winter Olympics"}) RETURN n LIMIT 10')
+print(res)
 
-a = Node("Person", name="Alice", age=33, desc="XXXXXXXXXXXXXXXXXXXXXXX")
-c = Node("Good", name="House", price=300)
-BUY = Relationship.type("BUY")
-transaction.merge(BUY(a, c), "Person", "name")
-g.commit(transaction)
+# transaction = g.begin()
+
+# a = Node("Person", name="Alice", age=33, desc="XXXXXXXXXXXXXXXXXXXXXXX")
+# c = Node("Good", name="House", price=300)
+# BUY = Relationship.type("BUY")
+# transaction.merge(BUY(a, c), "Person", "name")
+# g.commit(transaction)
