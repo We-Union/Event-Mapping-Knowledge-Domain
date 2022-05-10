@@ -3,8 +3,11 @@ import torch
 from fuzzywuzzy import process
 import typing
 from py2neo import Graph
+from util.out import dump_json
 
 class KnowledgeGraph:
+    NODE_TYPE = ('EVENT', 'COUNTRY', 'GROUP', 'PERSON', 'PLACE', 'TIME')
+
     def __init__(self, config) -> None:
         self.graph = Graph(**config)
     
@@ -105,9 +108,19 @@ class KnowledgeGraph:
         
         return results
     
+    def one_jump(self, entity : str, align_thred : float = 95, min_dis_thred : float = 1.0, limit : int = 10):
+        res = self.align_entity(entity, align_thred)
+        results = {}
+
+        for r in res:
+            results[r] = {}
+            for node_type in self.NODE_TYPE:
+                query = self.graph.run(f"MATCH (h:EVENT{{name:\"{r}\"}})-[n]-(t:{node_type})  RETURN h, t, type(n) as r LIMIT {limit}")
+                results[r][node_type] = query.data()
+        
+        dump_json(results, "test.json")
     
-    
-    def local_one_jump(self, entity : str, align_thred : float = 95, min_dis_thred : float = 1.0):
+    def local_one_jump(self, entity : str, align_thred : float = 95, min_dis_thred : float = 1.0, limit : int = 25):
         # this method can do query without database
         # align the input to kb
         res = self.align_entity(entity, align_thred)

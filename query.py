@@ -1,6 +1,7 @@
 import json
 from util.kd import KnowledgeGraph
 from py2neo import Graph
+from util.out import dump_json
 
 import argparse
 
@@ -22,6 +23,4 @@ if __name__ == "__main__":
     kg = KnowledgeGraph(c)
     kg.load_view("data/map.full.json")
 
-    res = kg.align_entity(EVENT)
-    
-    print(res)
+    kg.one_jump(entity=EVENT)

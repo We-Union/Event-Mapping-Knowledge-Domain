@@ -1,0 +1,345 @@
+{
+    "World War I": {
+        "EVENT": [
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Battle of Dogger Bank (1915)",
+                    "desc": "The Battle of Dogger Bank was a naval engagement during the First World War that took place on 24 January 1915 near the Dogger Bank in the North Sea, between squadrons of the British Grand Fleet and the Kaiserliche Marine (High Seas Fleet). The British had intercepted and decoded German wireless transmissions, gaining advance knowledge that a German raiding squadron was heading for Dogger Bank and ships of the Grand Fleet sailed to intercept the raiders."
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Bengal famine of 1943",
+                    "desc": "The Bengal famine of 1943 was a famine in the Bengal province of British India (now Bangladesh, West Bengal and eastern India) during World War II. An estimated 2.1 to 3.8 million,[A] out of a population of 60.3 million, died of starvation, malaria, and other diseases aggravated by malnutrition, population displacement, unsanitary conditions and lack of health care. Millions were impoverished as the crisis overwhelmed large segments of the economy and catastrophically disrupted the social fabric. Eventually, families disintegrated; men sold their small farms and left home to look for work or to join the British Indian Army, and women and children became homeless migrants, often travelling to Calcutta or other large cities in search of organised relief.[8]  Historians usually characterise the famine as anthropogenic (man-made),[9] asserting that wartime colonial policies created and then exacerbated the crisis. A minority view holds, however, that the famine was the result of natural causes.[10]"
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Jedwabne pogrom",
+                    "desc": "The Jedwabne pogrom was a massacre of Polish Jews in the town of Jedwabne, German-occupied Poland, on 10 July 1941, during World War II and the early stages of the Holocaust.[4] At least 340 men, women and children were murdered, some 300 of whom were locked in a barn which was then set on fire. About 40 Poles carried out the killing, the ringleaders having decided on it with German secret police or intelligence officials beforehand.[5] It was overseen by German military police who according to Jan Gross were the only ones who could decide the fate of the Jews at the massacre.[2][6][7][a]"
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Nacht und Nebel"
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "World Festival of Youth and Students"
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Mille Miglia"
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Upper Silesian offensive",
+                    "desc": "The Upper Silesian offensive was a strategically significant Soviet offensive on the Eastern Front of World War II in 1945. It was aimed at capturing the considerable industrial and natural resources located in Upper Silesia and involved forces of the 1st Ukrainian Front under Marshal Ivan Konev. Due to the importance of the region to the Germans, considerable forces were provided to Army Group Centre for its defence and the Germans were only slowly pushed back to the Czech border. Fighting for the region lasted from mid January right until the last day of the war in Europe on May 8, 1945."
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Second Battle of Sirte",
+                    "desc": "The Second Battle of Sirte (on 22 March 1942) was a naval engagement in the Mediterranean Sea, north of the Gulf of Sidra and southeast of Malta, during the Second World War. The escorting warships of a British convoy to Malta held off a much more powerful squadron of the Regia Marina (Italian Navy). The British convoy was composed of four merchant ships, escorted by four light cruisers, one anti-aircraft cruiser and 17 destroyers. The Italian force comprised a battleship, two heavy cruisers, one light cruiser and ten destroyers.[1] Despite the initial British success at warding off the Italian squadron, the Italian Fleet attack delayed the convoy's planned arrival before dawn, which exposed it to intense air attacks that sank all four merchant ships and one of the escorting destroyers in the following days.[2]"
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Battle of Kula Gulf",
+                    "desc": "The naval Battle of Kula Gulf (Japanese: クラ湾夜戦) took place in the early hours of 6 July 1943 during World War II. The battle involved United States and Japanese ships off the eastern coast of Kolombangara in the Solomon Islands. It took place during the early stages of the New Georgia campaign when a Japanese force landing reinforcements at Vila was intercepted by a force of US Navy cruisers and destroyers. One US light cruiser was sunk during the engagement while two Japanese destroyers were sunk and two more were damaged. The Japanese withdrew after the engagement, having landed 1,600 troops."
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Operation Long Jump"
+                },
+                "r": "LINK"
+            }
+        ],
+        "COUNTRY": [
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "July Crisis",
+                    "desc": "The July Crisis was a series of interrelated diplomatic and military escalations among the major powers of Europe in the summer of 1914, which led to the outbreak of World War I (1914–1918). The crisis began on 28 June 1914, when Gavrilo Princip, a Bosnian Serb, assassinated Archduke Franz Ferdinand, heir presumptive to the Austro-Hungarian throne, and his wife Sopie Duchess von Hohenberg. The assassin team was armed, trained, smuggled across the border and instructed by the head of the Serbian military intelligence service and his staff. A complex web of alliances, coupled with miscalculations when many leaders regarded war as in their best interests or felt that a general war would not occur, resulted in a general outbreak of hostilities among most major European nations in early August 1914."
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "July Crisis",
+                    "desc": "The July Crisis was a series of interrelated diplomatic and military escalations among the major powers of Europe in the summer of 1914, which led to the outbreak of World War I (1914–1918). The crisis began on 28 June 1914, when Gavrilo Princip, a Bosnian Serb, assassinated Archduke Franz Ferdinand, heir presumptive to the Austro-Hungarian throne, and his wife Sopie Duchess von Hohenberg. The assassin team was armed, trained, smuggled across the border and instructed by the head of the Serbian military intelligence service and his staff. A complex web of alliances, coupled with miscalculations when many leaders regarded war as in their best interests or felt that a general war would not occur, resulted in a general outbreak of hostilities among most major European nations in early August 1914."
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Germany"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Russia"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "France"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Britain"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Austria-Hungary"
+                },
+                "r": "JOIN"
+            }
+        ],
+        "GROUP": [
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Russian"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "French"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "British"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "German"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Germans"
+                },
+                "r": "JOIN"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Surrender of Japan",
+                    "desc": "The surrender of Imperial Japan was announced by Japanese Emperor Hirohito on August 15 and formally signed on September 2, 1945, bringing the hostilities of World War II to a close. By the end of July 1945, the Imperial Japanese Navy (IJN) had become incapable of conducting major operations and an Allied invasion of Japan was imminent. Together with Great Britain and China, the United States called for the unconditional surrender of the Japanese armed forces in the Potsdam Declaration on July 26, 1945—the alternative being prompt and utter destruction. While publicly stating their intent to fight on to the bitter end, Japan's leaders (the Supreme Council for the Direction of the War, also known as the Big Six) were privately making entreaties to the publicly neutral Soviet Union to mediate peace on terms more favorable to the Japanese. While maintaining a sufficient level of diplomatic engagement with the Japanese to give them the impression they might be willing to mediate, the Soviets were covertly preparing to attack Japanese forces in Manchuria and Korea (in addition to South Sakhalin and the Kuril Islands) in fulfillment of promises they had secretly made to the United States and the United Kingdom at the Tehran and Yalta Conferences."
+                },
+                "r": "LINK"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Surrender of Japan",
+                    "desc": "The surrender of Imperial Japan was announced by Japanese Emperor Hirohito on August 15 and formally signed on September 2, 1945, bringing the hostilities of World War II to a close. By the end of July 1945, the Imperial Japanese Navy (IJN) had become incapable of conducting major operations and an Allied invasion of Japan was imminent. Together with Great Britain and China, the United States called for the unconditional surrender of the Japanese armed forces in the Potsdam Declaration on July 26, 1945—the alternative being prompt and utter destruction. While publicly stating their intent to fight on to the bitter end, Japan's leaders (the Supreme Council for the Direction of the War, also known as the Big Six) were privately making entreaties to the publicly neutral Soviet Union to mediate peace on terms more favorable to the Japanese. While maintaining a sufficient level of diplomatic engagement with the Japanese to give them the impression they might be willing to mediate, the Soviets were covertly preparing to attack Japanese forces in Manchuria and Korea (in addition to South Sakhalin and the Kuril Islands) in fulfillment of promises they had secretly made to the United States and the United Kingdom at the Tehran and Yalta Conferences."
+                },
+                "r": "LINK"
+            }
+        ],
+        "PERSON": [],
+        "PLACE": [
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Europe"
+                },
+                "r": "LOCATE_AT"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Africa"
+                },
+                "r": "LOCATE_AT"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "the Middle East"
+                },
+                "r": "LOCATE_AT"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "the Pacific Islands"
+                },
+                "r": "LOCATE_AT"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "China"
+                },
+                "r": "LOCATE_AT"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "Indian Ocean"
+                },
+                "r": "LOCATE_AT"
+            },
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "North and South Atlantic Ocean"
+                },
+                "r": "LOCATE_AT"
+            }
+        ],
+        "TIME": [
+            {
+                "h": {
+                    "name": "World War I",
+                    "desc": "Allied victory"
+                },
+                "t": {
+                    "name": "28 July 1914 – 11 November 1918 (1914-07-28 – 1918-11-11)(4 years, 3 months and 2 weeks)  Peace treaties Treaty of VersaillesSigned 28 June 1919(4 years and 11 months)[b] Treaty of Saint-Germain-en-LayeSigned 10 September 1919(5 years, 1 month, 1 week and 6 days) Treaty of Neuilly-sur-SeineSigned 27 November 1919(4 years, 1 month, 1 week and 6 days)[c] Treaty of TrianonSigned 4 June 1920(5 years, 10 months and 1 week) Treaty of SèvresSigned 10 August 1920(6 years, 1 week and 6 days)[d] United States–Austria Peace TreatySigned 24 August 1921(3 years, 8 months, 2 weeks and 3 days)[e][f] United States–Germany Peace TreatySigned 25 August 1921(4 years, 4 months, 2 weeks and 5 days)[g] United States–Hungary Peace TreatySigned 29 August 1921(3 years, 8 months, 3 weeks and 1 day)[h] Treaty of LausanneSigned 24 July 1923(8 years, 8 months, 3 weeks and 4 days)[i]"
+                },
+                "r": "HAPPEN_IN"
+            }
+        ]
+    }
+}
