@@ -55,13 +55,15 @@ class KnowledgeGraph:
                     r21_candidate = i
 
         return r12_candidate, r21_candidate
+    
+    def align_entity(self, entity : str, align_thred) -> typing.List[str]:
+        res : typing.List[typing.Tuple[str, int]] = process.extract(entity, choices=self.nodes, limit=5)
+        res : typing.List[str] = [match[0] for match in res if match[1] >= align_thred]
+        return res
 
     def predict_relation(self, entity1 : str, entity2 : str, align_thred = 95, min_dis_thred = 1) -> typing.List[typing.Dict]:
-        res1 : typing.List[typing.Tuple[str, int]] = process.extract(entity1, choices=self.nodes, limit=5)
-        res2 : typing.List[typing.Tuple[str, int]] = process.extract(entity2, choices=self.nodes, limit=5)
-
-        res1 : typing.List[str] = [match[0] for match in res1 if match[1] >= align_thred]
-        res2 : typing.List[str] = [match[0] for match in res2 if match[1] >= align_thred]
+        res1 = self.align_entity(entity1, align_thred)
+        res2 = self.align_entity(entity2, align_thred)
 
         results = []
 
@@ -97,6 +99,42 @@ class KnowledgeGraph:
                     })
         
         return results
+    
+    def one_jump(self, entity : str, align_thred : float, min_dis_thred : float = 1.0):
+        # align the input to kb
+        res = self.align_entity(entity, align_thred)
+        
+        for e in res:
+            e_idx = self.node_view["name2index"][e]
+            # match in the emb
+
+            for other_e_idx in range(self.node_num):
+                if other_e_idx == e_idx:
+                    continue
+                r12_idx, r21_idx = self.safe_predict_relation(e_idx, other_e_idx, thred=min_dis_thred)
+                # if r12_idx > -1:
+                #     r12 = self.rel_view["index2name"][str(r12_idx)]
+                #     r12_type = self.rel_view["index2type"][str(r12_idx)]
+                #     results.append({
+                #         "start" : align_e1,
+                #         "start_type" : n1_type,
+                #         "relation" : r12_type,
+                #         "end" : align_e2,
+                #         "end_type" : n2_type,
+                #         "evidence" : r12
+                #     })
+                # if r21_idx > -1:
+                #     r21 = self.rel_view["index2name"][str(r21_idx)]
+                #     r21_type = self.rel_view["index2type"][str(r21_idx)]
+                #     results.append({
+                #         "start" : align_e2,
+                #         "start_type" : n2_type,
+                #         "relation" : r21_type,
+                #         "end" : align_e1,
+                #         "end_type" : n1_type,
+                #         "evidence" : r21
+                #     })
+
 
 
 if __name__ == "__main__":
