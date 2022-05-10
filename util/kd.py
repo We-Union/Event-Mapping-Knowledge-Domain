@@ -114,9 +114,33 @@ class KnowledgeGraph:
 
         for r in res:
             results[r] = {}
+            r_idx = self.node_view["name2index"][r]
+            r_type = self.node_view["index2type"][str(r_idx)].upper()
+
+            query = self.graph.run(f"MATCH (h:{r_type}{{name:\"{r}\"}})  RETURN h LIMIT {limit}").data()[0]["h"]
+            results[r]["desc"] = query["desc"]
+            results[r]["type"] = r_type
+            results[r]["to"] = []
+            results[r]["from"] = []
+
             for node_type in self.NODE_TYPE:
-                query = self.graph.run(f"MATCH (h:EVENT{{name:\"{r}\"}})-[n]-(t:{node_type})  RETURN h, t, type(n) as r LIMIT {limit}")
-                results[r][node_type] = query.data()
+                query = self.graph.run(f"MATCH (h:{r_type}{{name:\"{r}\"}})-[n]->(t:{node_type})  RETURN t, type(n) as r LIMIT {limit}").data()
+                for q in query:
+                    results[r]["to"].append({
+                        "name" : q["t"]["name"],
+                        "desc" : q["t"]["desc"],
+                        "type" : node_type,
+                        "rel" : q["r"]
+                    })
+                
+                query = self.graph.run(f"MATCH (h:{r_type}{{name:\"{r}\"}})<-[n]-(t:{node_type})  RETURN t, type(n) as r LIMIT {limit}").data()
+                for q in query:
+                    results[r]["from"].append({
+                        "name" : q["t"]["name"],
+                        "desc" : q["t"]["desc"],
+                        "type" : node_type,
+                        "rel" : q["r"]
+                    })
         
         return results
     
