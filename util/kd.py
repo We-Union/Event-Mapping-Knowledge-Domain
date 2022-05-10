@@ -118,7 +118,7 @@ class KnowledgeGraph:
                 query = self.graph.run(f"MATCH (h:EVENT{{name:\"{r}\"}})-[n]-(t:{node_type})  RETURN h, t, type(n) as r LIMIT {limit}")
                 results[r][node_type] = query.data()
         
-        dump_json(results, "test.json")
+        return results
     
     def local_one_jump(self, entity : str, align_thred : float = 95, min_dis_thred : float = 1.0, limit : int = 25):
         # this method can do query without database
