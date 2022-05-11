@@ -1,6 +1,6 @@
 import json
 from util.kd import KnowledgeGraph
-from py2neo import Graph
+from util.out import dump_json
 
 import argparse
 
@@ -10,18 +10,37 @@ parser.add_argument(
     '-i', help="input event"
 )
 
+parser.add_argument(
+    '-v', default="data/map.full.json",
+    help="map view path"
+)
+
+parser.add_argument(
+    '-c', default="config/k.json",
+    help="config path"
+)
+
+parser.add_argument(
+    '-o', default="default.json",
+    help="output_path"
+)
+
 args = vars(parser.parse_args())
 
 EVENT = args["i"]
+VIEW_PATH = args["v"]
+CONFIG_PATH = args["c"]
+OUT_PATH = args["o"]
 
 if __name__ == "__main__":
-    LOG_CONFIG_FILE = "./config/k.json"
-    with open(LOG_CONFIG_FILE, "r", encoding="utf-8") as fp:
+    with open(CONFIG_PATH, "r", encoding="utf-8") as fp:
         c = json.load(fp)
 
     kg = KnowledgeGraph(c)
-    kg.load_view("data/map.full.json")
+    kg.load_view(VIEW_PATH)
 
-    res = kg.align_entity(EVENT)
-    
-    print(res)
+    result = kg.one_jump(entity=EVENT)
+    dump_json(
+        obj=result,
+        path=OUT_PATH
+    )
