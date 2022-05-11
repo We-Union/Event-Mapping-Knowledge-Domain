@@ -133,3 +133,4 @@ lib/
 config
 model
 map.full.json
+*.txt
