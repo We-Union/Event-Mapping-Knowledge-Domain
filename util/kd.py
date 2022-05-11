@@ -63,12 +63,12 @@ class KnowledgeGraph:
 
         return r12_candidate, r21_candidate
     
-    def align_entity(self, entity : str, align_thred = 95) -> typing.List[str]:
-        res : typing.List[typing.Tuple[str, int]] = process.extract(entity, choices=self.nodes, limit=5)
+    def align_entity(self, entity : str, align_thred = 95, limit=5) -> typing.List[str]:
+        res : typing.List[typing.Tuple[str, int]] = process.extract(entity, choices=self.nodes, limit=limit)
         res : typing.List[str] = [match[0] for match in res if match[1] >= align_thred]
         return res
 
-    def predict_relation(self, entity1 : str, entity2 : str, align_thred = 95, min_dis_thred = 1) -> typing.List[typing.Dict]:
+    def local_predict_relation(self, entity1 : str, entity2 : str, align_thred = 95, min_dis_thred = 1) -> typing.List[typing.Dict]:
         res1 = self.align_entity(entity1, align_thred)
         res2 = self.align_entity(entity2, align_thred)
 
@@ -108,8 +108,61 @@ class KnowledgeGraph:
         
         return results
     
+    def predict_relation(self, entity1 : str, entity2 : str, align_thred = 95, min_dis_thred = 1):
+        res1 = self.align_entity(entity1, align_thred)
+        res2 = self.align_entity(entity2, align_thred)
+
+        results = {"edge" : []}
+        all_nodes = {}
+
+        for align_e1 in res1:
+            if align_e1 not in all_nodes:
+                all_nodes[align_e1] = {}
+            
+            n1_idx = self.node_view["name2index"][align_e1]
+            n1_type = self.node_view["index2type"][str(n1_idx)]
+            all_nodes[align_e1]["type"] = n1_type
+
+            for align_e2 in res2:
+                if align_e2 not in all_nodes:
+                    all_nodes[align_e2] = {}
+
+                n2_idx = self.node_view["name2index"][align_e2]
+                n2_type = self.node_view["index2type"][str(n2_idx)]
+                all_nodes[align_e2]["type"] = n2_type
+
+                query1 = self.graph.run(f'MATCH (h:COUNTRY{{name:"{align_e1}"}})-[a]->(t:EVENT{{name:"{align_e2}"}}) RETURN h, type(a) as r, t LIMIT 10').data()
+                query2 = self.graph.run(f'MATCH (h:COUNTRY{{name:"{align_e1}"}})<-[a]-(t:EVENT{{name:"{align_e2}"}}) RETURN h, type(a) as r, t LIMIT 10').data()
+                
+                for q in query1 + query2:
+                    if "desc" not in all_nodes[q["h"]["name"]]:
+                        all_nodes[q["h"]["name"]]["desc"] = q["h"]["desc"]
+                    if "desc" not in all_nodes[q["t"]["name"]]:
+                        all_nodes[q["t"]["name"]]["desc"] = q["t"]["desc"]
+                    results["edge"].append({
+                        "from" : q["h"]["name"],
+                        "to" : q["t"]["name"],
+                        "name" : q["r"]
+                    })
+        
+        results["all_nodes"] = []
+        true_all_nodes = set()
+
+        for edge in results["edge"]:
+            true_all_nodes.add(edge["from"])
+            true_all_nodes.add(edge["to"])
+        
+        for node_name in true_all_nodes:
+            results["all_nodes"].append({
+                "name" : node_name,
+                "type" : all_nodes[node_name]["type"],
+                "desc" : all_nodes[node_name]["desc"]
+            })
+
+        return results
+
     def one_jump(self, entity : str, align_thred : float = 95, min_dis_thred : float = 1.0, limit : int = 10):
-        res = self.align_entity(entity, align_thred)
+        res = self.align_entity(entity, align_thred, limit=1)
         results = {}
 
         for r in res:

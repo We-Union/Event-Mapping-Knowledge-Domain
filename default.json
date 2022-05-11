@@ -1,0 +1,21 @@
+{
+    "edge": [
+        {
+            "from": "China",
+            "to": "2022 Winter Olympics",
+            "name": "JOIN"
+        }
+    ],
+    "all_nodes": [
+        {
+            "name": "China",
+            "type": "place",
+            "desc": null
+        },
+        {
+            "name": "2022 Winter Olympics",
+            "type": "event",
+            "desc": "The 2022 Winter Olympics (2022年冬季奥林匹克运动会), officially called the XXIV Olympic Winter Games (Chinese: 第二十四届冬季奥林匹克运动会; pinyin: Dì Èrshísì Jiè Dōngjì Àolínpǐkè Yùndònghuì) and commonly known as Beijing 2022 (北京2022), was an international winter multi-sport event held between 4 and 20 February 2022 in Beijing, China, and surrounding areas with competition in selected events beginning 2 February 2022.[1]"
+        }
+    ]
+}

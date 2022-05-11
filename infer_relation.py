@@ -7,7 +7,11 @@ import argparse
 parser = argparse.ArgumentParser()
 
 parser.add_argument(
-    '-i', help="input event"
+    '-s', help="start event"
+)
+
+parser.add_argument(
+    '-e', help="end event"
 )
 
 parser.add_argument(
@@ -27,7 +31,8 @@ parser.add_argument(
 
 args = vars(parser.parse_args())
 
-EVENT = args["i"].strip()
+START = args["s"].strip()
+END   = args["e"].strip()
 VIEW_PATH = args["v"].strip()
 CONFIG_PATH = args["c"].strip()
 OUT_PATH = args["o"].strip()
@@ -39,7 +44,10 @@ if __name__ == "__main__":
     kg = KnowledgeGraph(c)
     kg.load_view(VIEW_PATH)
 
-    result = kg.one_jump(entity=EVENT)
+    result = kg.predict_relation(
+        entity1=START,
+        entity2=END
+    )
     dump_json(
         obj=result,
         path=OUT_PATH
