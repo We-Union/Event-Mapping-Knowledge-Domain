@@ -120,28 +120,51 @@ class KnowledgeGraph:
             query = self.graph.run(f"MATCH (h:{r_type}{{name:\"{r}\"}})  RETURN h LIMIT {limit}").data()[0]["h"]
             results[r]["desc"] = query["desc"]
             results[r]["type"] = r_type
+            
             results[r]["to"] = []
             results[r]["from"] = []
+
+            results[r]["all_nodes"] = [{
+                "name" : r,
+                "desc" : query["desc"],
+                "type" : r_type
+            }]
+
+            all_nodes = {}
 
             for node_type in self.NODE_TYPE:
                 query = self.graph.run(f"MATCH (h:{r_type}{{name:\"{r}\"}})-[n]->(t:{node_type})  RETURN t, type(n) as r LIMIT {limit}").data()
                 for q in query:
+                    node_name = q["t"]["name"]
                     results[r]["to"].append({
-                        "name" : q["t"]["name"],
-                        "desc" : q["t"]["desc"],
-                        "type" : node_type,
+                        "name" : node_name,
                         "rel" : q["r"]
                     })
+                    if q["t"]["name"] not in all_nodes:
+                        all_nodes[node_name] = {}
+                    all_nodes[node_name]["desc"] = q["t"]["desc"]
+                    all_nodes[node_name]["type"] = node_type
                 
                 query = self.graph.run(f"MATCH (h:{r_type}{{name:\"{r}\"}})<-[n]-(t:{node_type})  RETURN t, type(n) as r LIMIT {limit}").data()
                 for q in query:
+                    node_name = q["t"]["name"]
                     results[r]["from"].append({
                         "name" : q["t"]["name"],
-                        "desc" : q["t"]["desc"],
-                        "type" : node_type,
                         "rel" : q["r"]
                     })
-        
+                    if q["t"]["name"] not in all_nodes:
+                        all_nodes[node_name] = {}
+                    all_nodes[node_name]["desc"] = q["t"]["desc"]
+                    all_nodes[node_name]["type"] = node_type
+            
+            
+            for node_name in all_nodes:
+                results[r]["all_nodes"].append({
+                    "name" : node_name,
+                    "desc" : all_nodes[node_name]["desc"],
+                    "type" : all_nodes[node_name]["type"]
+                })
+
         return results
     
     def local_one_jump(self, entity : str, align_thred : float = 95, min_dis_thred : float = 1.0, limit : int = 25):
